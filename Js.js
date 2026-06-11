@@ -128,3 +128,35 @@ function Porcentagem()
         container.appendChild(div)
     })
 }
+const divGrafico = document.getElementById('grafico');
+divGrafico.innerHTML = "";
+
+const ctx = document.createElement ("canvas")
+divGrafico.appendChild(ctx)
+ 
+const descricoes = despesaList.map (despesa => despesa.despesa)
+const gastos = despesaList.map (despesa => despesa.valor)
+const gerarGrafico = () =>
+{
+   
+  const ctx = document.getElementById('grafico');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: descricoes,
+      datasets: [{
+        label: '# of Votes',
+        data: gastos,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+}
